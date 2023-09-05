@@ -1,24 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--ImageList-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="ImageList" id="BYZ-38-t0r" customClass="ImagesListViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="PhH-pK-RVi">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImagesListCell" id="eWC-yj-8b5" userLabel="ImagesListCell" customClass="ImagesListCell" customModule="ImageFeed" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="140"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eWC-yj-8b5" id="HfA-sU-NAe">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="140"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="Moi-MI-VQb" userLabel="CellImage">
+                                                    <rect key="frame" x="16" y="4" width="361" height="132"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="16"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9I-Fm-9gE" userLabel="LikeButton">
+                                                    <rect key="frame" x="333" y="4" width="44" height="44"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" title="" image="like_active"/>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 сентября 2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWk-fF-QN4" userLabel="DateLabel">
+                                                    <rect key="frame" x="23.999999999999993" y="112" width="105.33333333333331" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="Moi-MI-VQb" secondAttribute="bottom" constant="4" id="8Y8-uw-w5v"/>
+                                                <constraint firstItem="b9I-Fm-9gE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Moi-MI-VQb" secondAttribute="leading" constant="293" id="BQT-53-1La"/>
+                                                <constraint firstItem="Moi-MI-VQb" firstAttribute="bottom" secondItem="cWk-fF-QN4" secondAttribute="bottom" constant="8" id="Bpw-19-wWh"/>
+                                                <constraint firstItem="Moi-MI-VQb" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cWk-fF-QN4" secondAttribute="trailing" constant="8" id="Fdj-Tg-MBu"/>
+                                                <constraint firstItem="Moi-MI-VQb" firstAttribute="top" secondItem="HfA-sU-NAe" secondAttribute="top" constant="4" id="LZv-PJ-Aaw"/>
+                                                <constraint firstItem="b9I-Fm-9gE" firstAttribute="top" secondItem="Moi-MI-VQb" secondAttribute="top" id="Rjn-Aa-kyA"/>
+                                                <constraint firstItem="Moi-MI-VQb" firstAttribute="trailing" secondItem="b9I-Fm-9gE" secondAttribute="trailing" id="UVQ-j7-Kfs"/>
+                                                <constraint firstItem="cWk-fF-QN4" firstAttribute="leading" secondItem="Moi-MI-VQb" secondAttribute="leading" constant="8" id="g9Q-QN-ZKy"/>
+                                                <constraint firstAttribute="trailing" secondItem="Moi-MI-VQb" secondAttribute="trailing" constant="16" id="rHo-Fg-gey"/>
+                                                <constraint firstItem="Moi-MI-VQb" firstAttribute="leading" secondItem="HfA-sU-NAe" secondAttribute="leading" constant="16" id="yfJ-wk-0XC"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cellImage" destination="Moi-MI-VQb" id="Mcw-nR-too"/>
+                                            <outlet property="dateLabel" destination="cWk-fF-QN4" id="EnQ-pi-DFe"/>
+                                            <outlet property="likeButton" destination="b9I-Fm-9gE" id="WDg-rE-5zE"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="9yZ-XD-UWy"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="3XR-Hz-Tbg"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" red="0.10196078431372549" green="0.10588235294117647" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="PhH-pK-RVi" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="FaM-Dl-WhR" userLabel="top = Table View.top"/>
+                            <constraint firstAttribute="trailing" secondItem="PhH-pK-RVi" secondAttribute="trailing" id="OnL-gF-jP7"/>
+                            <constraint firstAttribute="bottom" secondItem="PhH-pK-RVi" secondAttribute="bottom" id="ek9-87-Mzu" userLabel="Table View.bottom = bottom"/>
+                            <constraint firstItem="PhH-pK-RVi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="mae-hV-kaT"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="PhH-pK-RVi" id="al4-rz-BKg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="41.984732824427482" y="-2.1126760563380285"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="0" width="200" height="132"/>
+        <image name="like_active" width="44" height="44"/>
+    </resources>
 </document>
