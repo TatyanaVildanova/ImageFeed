@@ -51,7 +51,6 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="Moi-MI-VQb" secondAttribute="bottom" constant="4" id="8Y8-uw-w5v"/>
-                                                <constraint firstItem="b9I-Fm-9gE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Moi-MI-VQb" secondAttribute="leading" constant="293" id="BQT-53-1La"/>
                                                 <constraint firstItem="Moi-MI-VQb" firstAttribute="bottom" secondItem="cWk-fF-QN4" secondAttribute="bottom" constant="8" id="Bpw-19-wWh"/>
                                                 <constraint firstItem="Moi-MI-VQb" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cWk-fF-QN4" secondAttribute="trailing" constant="8" id="Fdj-Tg-MBu"/>
                                                 <constraint firstItem="Moi-MI-VQb" firstAttribute="top" secondItem="HfA-sU-NAe" secondAttribute="top" constant="4" id="LZv-PJ-Aaw"/>
