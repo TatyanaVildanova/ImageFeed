@@ -30,22 +30,6 @@ final class ImagesListViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-
-
-    func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
-        guard let image = UIImage(named: photosName[indexPath.row]) else {
-            return
-        }
-        
-        cell.cellImage.image = image
-        cell.dateLabel.text = dateFormatter.string(from: Date())
-        
-        let isLiked = indexPath.row % 2 == 0
-        let likeImage = isLiked ? UIImage(named: "like_active") : UIImage(named: "like_not_active")
-        cell.likeButton.setImage(likeImage, for: .normal)
-        
-        cell.configureGradient()
-    }
 }
 
 // MARK: - UITableViewDataSource
@@ -64,7 +48,23 @@ extension ImagesListViewController: UITableViewDataSource {
         configCell(for: imageListCell, with: indexPath)
         return imageListCell
     }
+    
+    private func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
+        guard let image = UIImage(named: photosName[indexPath.row]) else {
+            return
+        }
+        
+        cell.cellImage.image = image
+        cell.dateLabel.text = dateFormatter.string(from: Date())
+        
+        let isLiked = indexPath.row % 2 == 0
+        let likeImage = isLiked ? UIImage(named: "like_active") : UIImage(named: "like_not_active")
+        cell.likeButton.setImage(likeImage, for: .normal)
+        
+        cell.configureGradient()
+    }
 }
+
 
 // MARK: - UITableViewDelegate
 
