@@ -24,7 +24,7 @@ final class ImagesListViewController: UIViewController {
                                               left: 0,
                                               bottom: 12,
                                               right: 0)
-        
+        tableView.backgroundColor = UIColor(named: "YP Black")
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
