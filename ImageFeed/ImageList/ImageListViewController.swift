@@ -7,16 +7,11 @@
 import UIKit
 
 final class ImagesListViewController: UIViewController {
+    private let ShowSingleImageSegueIdentifier = "ShowSingleImage"
     
-    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private var tableView: UITableView!
     
     private let photosName: [String] = Array(0..<20).map{ "\($0)" }
-    private lazy var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        formatter.timeStyle = .none
-        return formatter
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +25,27 @@ final class ImagesListViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == ShowSingleImageSegueIdentifier {
+            let viewController = segue.destination as! SingleImageViewController
+            let indexPath = sender as! IndexPath
+            let image = UIImage(named: photosName[indexPath.row])
+            viewController.image = image
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
+    }
+    
+    private lazy var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .none
+        return formatter
+    }()
 }
+
+
 
 // MARK: - UITableViewDataSource
 
@@ -48,44 +63,46 @@ extension ImagesListViewController: UITableViewDataSource {
         configCell(for: imageListCell, with: indexPath)
         return imageListCell
     }
-    
-    private func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
-        guard let image = UIImage(named: photosName[indexPath.row]) else {
-            return
-        }
-        
-        cell.cellImage.image = image
-        cell.dateLabel.text = dateFormatter.string(from: Date())
-        
-        let isLiked = indexPath.row % 2 == 0
-        let likeImage = isLiked ? UIImage(named: "like_active") : UIImage(named: "like_not_active")
-        cell.likeButton.setImage(likeImage, for: .normal)
-        
-        cell.configureGradient()
-    }
 }
-
-
-// MARK: - UITableViewDelegate
-
-extension ImagesListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    extension ImagesListViewController {
+        func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
+            guard let image = UIImage(named: photosName[indexPath.row]) else {
+                return
+            }
+            
+            cell.cellImage.image = image
+            cell.dateLabel.text = dateFormatter.string(from: Date())
+            
+            let isLiked = indexPath.row % 2 == 0
+            let likeImage = isLiked ? UIImage(named: "like_active") : UIImage(named: "like_not_active")
+            cell.likeButton.setImage(likeImage, for: .normal)
+            
+            cell.configureGradient()
+        }
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let image = UIImage(named: photosName[indexPath.row]) else {
-            return 0
+    
+    // MARK: - UITableViewDelegate
+    
+    extension ImagesListViewController: UITableViewDelegate {
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            performSegue(withIdentifier: ShowSingleImageSegueIdentifier, sender: indexPath)
         }
         
-        let imageInsets = UIEdgeInsets(top: 4,
-                                       left: 16,
-                                       bottom: 4,
-                                       right: 16)
-        let imageViewWidth = tableView.bounds.width - imageInsets.left - imageInsets.right
-        let imageWidth = image.size.width
-        let scale = imageViewWidth / imageWidth
-        let cellHeight = image.size.height * scale + imageInsets.top + imageInsets.bottom
-        return cellHeight
+        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            guard let image = UIImage(named: photosName[indexPath.row]) else {
+                return 0
+            }
+            
+            let imageInsets = UIEdgeInsets(top: 4,
+                                           left: 16,
+                                           bottom: 4,
+                                           right: 16)
+            let imageViewWidth = tableView.bounds.width - imageInsets.left - imageInsets.right
+            let imageWidth = image.size.width
+            let scale = imageViewWidth / imageWidth
+            let cellHeight = image.size.height * scale + imageInsets.top + imageInsets.bottom
+            return cellHeight
+        }
     }
-}
-
+    

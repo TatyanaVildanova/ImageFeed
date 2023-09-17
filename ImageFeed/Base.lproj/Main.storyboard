@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1hP-yT-HV3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iJM-LJ-VCK">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -22,7 +22,7 @@
                                 <color key="backgroundColor" name="YP Black"/>
                                 <color key="sectionIndexBackgroundColor" name="YP Black"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImagesListCell" id="eWC-yj-8b5" userLabel="ImagesListCell" customClass="ImagesListCell" customModule="ImageFeed" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="ImagesListCell" id="eWC-yj-8b5" userLabel="ImagesListCell" customClass="ImagesListCell" customModule="ImageFeed" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eWC-yj-8b5" id="HfA-sU-NAe">
@@ -73,7 +73,7 @@
                                                 <constraint firstItem="Moi-MI-VQb" firstAttribute="leading" secondItem="HfA-sU-NAe" secondAttribute="leading" constant="16" id="yfJ-wk-0XC"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" name="YP Black"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <connections>
                                             <outlet property="cellImage" destination="Moi-MI-VQb" id="Mcw-nR-too"/>
                                             <outlet property="dateLabel" destination="cWk-fF-QN4" id="EnQ-pi-DFe"/>
@@ -100,6 +100,7 @@
                     <navigationItem key="navigationItem" id="gky-UO-cd4"/>
                     <connections>
                         <outlet property="tableView" destination="PhH-pK-RVi" id="al4-rz-BKg"/>
+                        <segue destination="1hP-yT-HV3" kind="show" identifier="ShowSingleImage" id="JX9-Ya-DTS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -218,7 +219,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="FVI-UX-iCR" userLabel="Image View">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6k9-F4-Mqg"/>
@@ -230,6 +231,7 @@
                             <constraint firstItem="6k9-F4-Mqg" firstAttribute="bottom" secondItem="FVI-UX-iCR" secondAttribute="bottom" id="xdg-Gd-ztE"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Tu1-dC-hvN"/>
                     <connections>
                         <outlet property="imageView" destination="FVI-UX-iCR" id="6Mh-SJ-BoE"/>
                     </connections>
