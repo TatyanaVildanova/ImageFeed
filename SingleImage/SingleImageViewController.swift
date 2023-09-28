@@ -25,6 +25,7 @@ final class SingleImageViewController: UIViewController {
         scrollView.maximumZoomScale = 1.25
         imageView.image = image
         rescaleAndCenterImageInScrollView(image: image)
+        view.backgroundColor = UIColor(named: "YP Black")
     }
     
     @IBAction private func didTapBackButton() {
