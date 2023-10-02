@@ -266,6 +266,9 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="ACP-B5-PGg" kind="presentation" id="inj-0S-eRK"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="auth_screen_logo" translatesAutoresizingMaskIntoConstraints="NO" id="WN2-TQ-KUy">
                                 <rect key="frame" x="166.66666666666666" y="396" width="60" height="60"/>
@@ -310,11 +313,66 @@
             </objects>
             <point key="canvasLocation" x="968.70229007633588" y="-2.1126760563380285"/>
         </scene>
+        <!--Web View View Controller-->
+        <scene sceneID="VqH-tx-hYj">
+            <objects>
+                <viewController modalPresentationStyle="overFullScreen" id="ACP-B5-PGg" customClass="WebViewViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vqn-Cq-uLN">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nx6-tf-VwI">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" name="YP White"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="es5-HV-RgG">
+                                <rect key="frame" x="0.0" y="0.0" width="64" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="3r0-63-0YP"/>
+                                    <constraint firstAttribute="width" constant="64" id="dkN-Ie-uYH"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="nav_back_button"/>
+                                <connections>
+                                    <action selector="didTapBackButton:" destination="ACP-B5-PGg" eventType="touchUpInside" id="JPW-9w-Y5u"/>
+                                </connections>
+                            </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4V8-7g-4BH">
+                                <rect key="frame" x="121" y="92" width="150" height="4"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="progressTintColor" name="YP Black"/>
+                            </progressView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="dL3-5V-D5M"/>
+                        <color key="backgroundColor" name="YP White"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="nx6-tf-VwI" secondAttribute="bottom" id="3Re-Yb-ZzA"/>
+                            <constraint firstItem="nx6-tf-VwI" firstAttribute="leading" secondItem="Vqn-Cq-uLN" secondAttribute="leading" id="Pmr-5M-76E"/>
+                            <constraint firstItem="es5-HV-RgG" firstAttribute="top" secondItem="dL3-5V-D5M" secondAttribute="top" id="QhC-26-K0Q"/>
+                            <constraint firstItem="es5-HV-RgG" firstAttribute="leading" secondItem="dL3-5V-D5M" secondAttribute="leading" id="Vmb-3F-Z0y"/>
+                            <constraint firstAttribute="trailing" secondItem="nx6-tf-VwI" secondAttribute="trailing" id="oBu-ds-spS"/>
+                            <constraint firstItem="nx6-tf-VwI" firstAttribute="top" secondItem="Vqn-Cq-uLN" secondAttribute="top" id="vAS-He-UMY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="81M-7T-OBP"/>
+                    <connections>
+                        <outlet property="webView" destination="nx6-tf-VwI" id="GPo-Jq-ipP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pea-1F-DI0" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1895.4198473282443" y="-2.1126760563380285"/>
+        </scene>
     </scenes>
     <resources>
         <image name="0" width="200" height="132"/>
         <image name="auth_screen_logo" width="60" height="60"/>
         <image name="like_active" width="44" height="44"/>
+        <image name="nav_back_button" width="24" height="24"/>
         <image name="nav_back_button_white" width="24" height="24"/>
         <image name="share_button" width="50" height="50"/>
         <image name="tab_editorial_active" width="30" height="30"/>

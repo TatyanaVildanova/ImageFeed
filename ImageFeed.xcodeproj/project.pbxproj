@@ -18,6 +18,7 @@
 		05EF234C2AB7016A00F32DE0 /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF234B2AB7016A00F32DE0 /* SingleImageViewController.swift */; };
 		05EF234E2AC76A4600F32DE0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF234D2AC76A4600F32DE0 /* Constants.swift */; };
 		05EF23522AC77E1200F32DE0 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF23512AC77E1200F32DE0 /* AuthViewController.swift */; };
+		05EF23542ACADB7500F32DE0 /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF23532ACADB7500F32DE0 /* WebViewViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		05EF234B2AB7016A00F32DE0 /* SingleImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
 		05EF234D2AC76A4600F32DE0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		05EF23512AC77E1200F32DE0 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		05EF23532ACADB7500F32DE0 /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				05EF23512AC77E1200F32DE0 /* AuthViewController.swift */,
+				05EF23532ACADB7500F32DE0 /* WebViewViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 				05EF23522AC77E1200F32DE0 /* AuthViewController.swift in Sources */,
 				05EF234E2AC76A4600F32DE0 /* Constants.swift in Sources */,
 				05BB5A532AA52D8100397568 /* AppDelegate.swift in Sources */,
+				05EF23542ACADB7500F32DE0 /* WebViewViewController.swift in Sources */,
 				05BB5A552AA52D8100397568 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
