@@ -6,7 +6,7 @@
 //
 import UIKit
 
-final class ImagesListViewController: UIViewController {
+class ImagesListViewController: UIViewController {
     private let ShowSingleImageSegueIdentifier = "ShowSingleImage"
     
     @IBOutlet private var tableView: UITableView!

@@ -129,7 +129,7 @@
         <!--Tab Bar View Controller-->
         <scene sceneID="B8V-QA-72c">
             <objects>
-                <tabBarController storyboardIdentifier="TabBarViewController" id="iJM-LJ-VCK" customClass="TabBarViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarViewController" modalPresentationStyle="fullScreen" id="iJM-LJ-VCK" customClass="TabBarViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="svG-OD-jUf">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -141,7 +141,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="2WL-Yu-8fX" kind="relationship" relationship="viewControllers" id="nL6-hs-olU"/>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="Fei-CR-ShH"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="KLQ-mn-MEc"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rqs-eZ-wr4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -222,20 +222,23 @@
         <!--Auth View Controller-->
         <scene sceneID="WS4-bt-jhc">
             <objects>
-                <viewController id="pLP-ML-PWY" userLabel="Auth View Controller" customClass="AuthViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="pLP-ML-PWY" userLabel="Auth View Controller" customClass="AuthViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="O4U-S4-rt1">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Def-qM-uEc">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Def-qM-uEc">
                                 <rect key="frame" x="16" y="704" width="361" height="48"/>
                                 <color key="backgroundColor" name="YP White"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="M7U-Lt-XkJ"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="tintColor" name="YP Black"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Войти"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Войти">
+                                    <color key="titleColor" name="YP Black"/>
+                                </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="16"/>
@@ -274,10 +277,11 @@
         <!--Navigation Controller-->
         <scene sceneID="myw-bL-AnK">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kXk-TQ-apZ" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="kXk-TQ-apZ" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="boi-9x-y8S"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7sO-XA-E2r">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -346,11 +350,11 @@
             </objects>
             <point key="canvasLocation" x="1895.4198473282443" y="-2.1126760563380285"/>
         </scene>
-        <!--Unsplash-->
+        <!--Splash View Controller-->
         <scene sceneID="Cqc-8F-Bxk">
             <objects>
-                <viewController storyboardIdentifier="SplashViewController" id="Kiv-sb-dHx" userLabel="Unsplash" customClass="SplashViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="elS-2i-Dhh">
+                <viewController storyboardIdentifier="SplashViewController" modalPresentationStyle="fullScreen" id="Kiv-sb-dHx" customClass="SplashViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" alpha="0.25" contentMode="scaleToFill" id="elS-2i-Dhh">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -365,9 +369,8 @@
                             <constraint firstItem="0fq-y4-qmP" firstAttribute="centerX" secondItem="elS-2i-Dhh" secondAttribute="centerX" id="SQy-Mw-6QQ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="tab_editorial_active" id="Qlq-1s-Zt9" userLabel="Unsplash"/>
                     <connections>
-                        <segue destination="kXk-TQ-apZ" kind="presentation" identifier="ShowAuthenticationScreen" id="wfo-So-Gap"/>
+                        <segue destination="kXk-TQ-apZ" kind="show" identifier="ShowAuthenticationScreen" id="wfo-So-Gap"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ThG-P0-P3K" sceneMemberID="firstResponder"/>
