@@ -13,7 +13,7 @@ class ProfileViewController: UIViewController {
     private let loginNameLabel = UILabel()
     private let descriptionLabel = UILabel()
     private let logoutButton = UIButton.systemButton(with: UIImage(named: "logout_button")!,
-                                                     target: ProfileViewController.self,
+                                                     target: self,
                                                      action: #selector(didTapLogoutButton))
     
     
