@@ -8,14 +8,11 @@
 import UIKit
 
 final class SingleImageViewController: UIViewController {
-    var image: UIImage? {
+    var image: UIImage! {
         didSet {
-            if isViewLoaded {
-                imageView.image = image
-                if let image = image {
-                    rescaleAndCenterImageInScrollView(image: image)
-                }
-            }
+            guard isViewLoaded else { return }
+            imageView.image = image
+            rescaleAndCenterImageInScrollView(image: image)
         }
     }
     
@@ -31,23 +28,19 @@ final class SingleImageViewController: UIViewController {
         view.backgroundColor = UIColor(named: "YP Black")
     }
     
-    @IBAction func didTapBackButton(_ sender: Any) {
+    @IBAction func didTapBackButton(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
     
-    @IBAction func didTapShareButton(_ sender: Any) {
+    @IBAction func didTapShareButton(_ sender: UIButton) {
         let share = UIActivityViewController(
-            activityItems: [image],
+            activityItems: [image!],
             applicationActivities: nil)
         present(share, animated: true, completion: nil)
     }
     
-    private func rescaleAndCenterImageInScrollView(image: UIImage?) {
-        guard let image = image else {
-            return
-        }
-        
+    private func rescaleAndCenterImageInScrollView(image: UIImage) {
         let minZoomScale = scrollView.minimumZoomScale
         let maxZoomScale = scrollView.maximumZoomScale
         view.layoutIfNeeded()
