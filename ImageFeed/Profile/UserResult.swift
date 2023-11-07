@@ -12,5 +12,5 @@ struct UserResult: Codable {
 }
 
 struct ImageURL: Codable {
-    let small: String
+    let large: String
 }

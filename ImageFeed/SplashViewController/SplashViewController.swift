@@ -34,24 +34,7 @@ final class SplashViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if let token = oauth2TokenStorage.token {
-            profileService.fetchProfile(token) { [weak self] result in
-                switch result {
-                case .success(_ ):
-                    self?.switchToTabBarController()
-                    if let username = self?.profileService.profile?.username {
-                        self?.profileImageService.fetchProfileImageURL(username: username) { result in
-                            switch result {
-                            case .success(let imageUrl):
-                                print("Avatar URL: \(imageUrl)")
-                            case .failure(_):
-                                self?.showAlertWithError()
-                            }
-                        }
-                    }
-                case .failure(_):
-                    self?.showAlertWithError()
-                }
-            }
+            fetchProfile(token)
         } else {
             showAuthController()
         }
@@ -113,39 +96,30 @@ extension SplashViewController: AuthViewControllerDelegate {
         oauth2Service.fetchOAuthToken(code) { [weak self] authResult in
             switch authResult {
             case .success(let token):
-                self?.fetchProfile(token) { [weak self] in
-                    if let username = self?.profileService.profile?.username {
-                        self?.profileImageService.fetchProfileImageURL(username: username) { result in
-                            switch result {
-                            case .success(let imageUrl):
-                                print("Avatar URL: \(imageUrl)")
-                            case .failure(_):
-                                self?.showAlertWithError()
-                            }
-                        }
-                    }
-                    UIBlockingProgressHUD.dismiss()
-                }
+                self?.fetchProfile(token)
+                UIBlockingProgressHUD.dismiss()
             case .failure(_):
                 self?.showAlertWithError()
                 UIBlockingProgressHUD.dismiss()
             }
         }
+        
     }
     
     
-    private func fetchProfile(_ token: String, completion: @escaping () -> Void) {
+    
+    private func fetchProfile(_ token: String) {
         UIBlockingProgressHUD.show()
         profileService.fetchProfile(token, completion: { [weak self] profileResult in
             switch profileResult {
-            case .success(_):
+            case .success(let username):
+                self?.profileImageService.fetchProfileImageURL(username: username.username) { _ in }
                 self?.switchToTabBarController()
                 UIBlockingProgressHUD.dismiss()
             case .failure(_):
                 UIBlockingProgressHUD.dismiss()
                 self?.showAlertWithError()
             }
-            completion()
         })
     }
     private func showAlertWithError() {
@@ -161,5 +135,4 @@ extension SplashViewController: AuthViewControllerDelegate {
         self.present(alertController, animated: true)
     }
 }
-
 

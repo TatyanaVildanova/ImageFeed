@@ -11,7 +11,7 @@ final class OAuth2Service {
     static let shared = OAuth2Service()
     private let storage: OAuth2TokenStorage
     private let session: URLSession
-    private var currentTask: URLSessionTask?
+    private var task: URLSessionTask?
     private var lastCode: String?
     
     private init(
@@ -23,23 +23,23 @@ final class OAuth2Service {
     }
     
     func fetchOAuthToken(_ code: String,
-                        completion: @escaping (Result<String, Error>) -> Void) {
-
+                         completion: @escaping (Result<String, Error>) -> Void) {
+        
         guard code != lastCode else {
             return
         }
-
+        
         lastCode = code
-
+        
         guard let request = authTokenRequest(code: code) else {
             assertionFailure("Invalid request")
             completion(.failure(NetworkError.invalidRequest))
             return
         }
-
-        currentTask = session.descTask(for: request) {
+        
+        task = session.descTask(for: request) {
             [weak self] (response: Result<OAuthTokenResponseBody, Error>) in
-            self?.currentTask = nil
+            self?.task = nil
             switch response {
             case .success(let body):
                 let authToken = body.accessToken
@@ -59,7 +59,7 @@ extension OAuth2Service {
         urlComponents.scheme = "https"
         urlComponents.host = "unsplash.com"
         urlComponents.path = "/oauth/token"
-
+        
         urlComponents.queryItems = [
             URLQueryItem(name: "client_id", value: accessKey),
             URLQueryItem(name: "client_secret", value: secretKey),
@@ -71,9 +71,9 @@ extension OAuth2Service {
         guard let url = urlComponents.url else {
             fatalError("Failed to create URL")
         }
-
+        
         var request = URLRequest(url: url)
-
+        
         request.httpMethod = "POST"
         return request
     }

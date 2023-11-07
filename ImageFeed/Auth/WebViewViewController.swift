@@ -19,7 +19,7 @@ final class WebViewViewController: UIViewController {
     
     @IBOutlet private weak var webView: WKWebView!
     @IBOutlet private weak var progressView: UIProgressView!
-     
+    
     weak var delegate: WebViewViewControllerDelegate?
     
     private var estimatedProgressObservation: NSKeyValueObservation?
@@ -40,7 +40,7 @@ final class WebViewViewController: UIViewController {
         let url = urlComponents.url!
         let request = URLRequest(url: url)
         webView.load(request)
-
+        
         estimatedProgressObservation = webView.observe(
             \.estimatedProgress,
              options: [],
@@ -58,7 +58,7 @@ final class WebViewViewController: UIViewController {
         super.viewDidAppear(animated)
         updateProgress()
     }
-
+    
     private func updateProgress() {
         progressView.progress = Float(webView.estimatedProgress)
         progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
@@ -79,7 +79,7 @@ extension WebViewViewController: WKNavigationDelegate {
             return nil
         }
     }
-
+    
     func webView(
         _ webView: WKWebView,
         decidePolicyFor navigationAction: WKNavigationAction,

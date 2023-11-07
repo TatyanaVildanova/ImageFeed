@@ -108,10 +108,10 @@
             </objects>
             <point key="canvasLocation" x="1895.4198473282443" y="-2.1126760563380285"/>
         </scene>
-        <!--Tab Bar View Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="B8V-QA-72c">
             <objects>
-                <tabBarController storyboardIdentifier="TabBarViewController" modalPresentationStyle="fullScreen" id="iJM-LJ-VCK" customClass="TabBarViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarViewController" modalPresentationStyle="fullScreen" id="iJM-LJ-VCK" customClass="TabBarController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="svG-OD-jUf">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

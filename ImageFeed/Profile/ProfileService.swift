@@ -10,18 +10,18 @@ import Foundation
 final class ProfileService {
     static let shared = ProfileService()
     private let session = URLSession.shared
-    private var currentTask: URLSessionTask?
+    private var task: URLSessionTask?
     private(set) var profile: Profile?
     private var lastToken: String?
-
+    
     private init(
         profile: Profile? = nil,
         lastToken: String? = nil,
-        currentTask: URLSessionTask? = nil
+        task: URLSessionTask? = nil
     ) {
         self.profile = profile
         self.lastToken = lastToken
-        self.currentTask = currentTask
+        self.task = task
     }
     
     func fetchProfile(_ token: String) {
@@ -34,21 +34,21 @@ final class ProfileService {
             }
         }
     }
-
-
+    
+    
     func fetchProfile(_ token: String, completion: @escaping (Result <Profile, Error>) -> Void) {
         assert(Thread.isMainThread)
         if lastToken == token { return }
-        currentTask?.cancel()
+        task?.cancel()
         lastToken = token
-
+        
         guard let request = makeFetchProfileRequest(token: token) else {
             assertionFailure("Invalid request")
             completion(.failure(NetworkError.invalidRequest))
             return
         }
-
-        currentTask = session.descTask(for: request) {
+        
+        task = session.descTask(for: request) {
             [weak self] (response: Result<ProfileResult, Error>) in
             switch response {
             case .success(let profileResult):
@@ -71,15 +71,15 @@ extension ProfileService {
         urlComponents.scheme = "https"
         urlComponents.host = "api.unsplash.com"
         urlComponents.path = "/me"
-
+        
         guard let url = urlComponents.url else {
             fatalError("Failed to create URL")
         }
-
+        
         var request = URLRequest(url: url)
-
+        
         request.httpMethod = "GET"
-
+        
         if let token = OAuth2TokenStorage.shared.token {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }

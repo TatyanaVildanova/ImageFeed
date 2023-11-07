@@ -125,7 +125,7 @@ final class ProfileViewController: UIViewController {
         }
     }
     
- 
+    
     @objc
     private func updateAvatar(notification: Notification) {
         guard
@@ -142,15 +142,15 @@ final class ProfileViewController: UIViewController {
         let processor = RoundCornerImageProcessor(cornerRadius: 61)
         avatarImage.kf.setImage(with: url,
                                 options: [
-                                .processor(processor)])
+                                    .processor(processor)])
     }
-
+    
     private func updateProfileDetails(profile: Profile) {
-            nameLabel.text = profile.name
-            userNameLabel.text = profile.loginName
-            statusLabel.text = profile.bio
+        nameLabel.text = profile.name
+        userNameLabel.text = profile.loginName
+        statusLabel.text = profile.bio
     }
-
+    
     // MARK: - Actions
     @objc private func exitButtonDidTap() {
         print("Exit button tapped")
