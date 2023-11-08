@@ -70,7 +70,7 @@ final class SplashViewController: UIViewController {
     
     private func setupViews() {
         view.addSubview(logoImageView)
-        view.backgroundColor = UIColor(named: "YP black")
+        view.backgroundColor = UIColor(named: "YP Black")
     }
     
     private func setupConstraints() {
@@ -113,7 +113,7 @@ extension SplashViewController: AuthViewControllerDelegate {
         profileService.fetchProfile(token, completion: { [weak self] profileResult in
             switch profileResult {
             case .success(let username):
-                self?.profileImageService.fetchProfileImageURL(username: username.username) { _ in }
+                self?.profileImageService.fetchProfileImageURL(username: username.userName) { _ in }
                 self?.switchToTabBarController()
                 UIBlockingProgressHUD.dismiss()
             case .failure(_):

@@ -70,7 +70,7 @@ final class ProfileViewController: UIViewController {
         setupViews()
         setupConstraints()
         
-        if let url = profileImageService.avatarURL {
+        if let url = profileImageService.avatarUrl {
             updateAvatar(url: url)
         }
         

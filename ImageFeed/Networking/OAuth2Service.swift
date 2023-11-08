@@ -5,79 +5,63 @@
 //  Created by TATIANA VILDANOVA on 03.10.2023.
 //
 
-import UIKit
+import Foundation
 
 final class OAuth2Service {
+    
     static let shared = OAuth2Service()
-    private let storage: OAuth2TokenStorage
-    private let session: URLSession
     private var task: URLSessionTask?
     private var lastCode: String?
+    private let urlSession = URLSession.shared
     
-    private init(
-        session: URLSession = .shared,
-        storage: OAuth2TokenStorage = .shared
-    ) {
-        self.session = session
-        self.storage = storage
+    private (set) var authToken: String? {
+        get {
+            return OAuth2TokenStorage().token
+        }
+        set {
+            OAuth2TokenStorage().token = newValue
+        }
     }
     
-    func fetchOAuthToken(_ code: String,
-                         completion: @escaping (Result<String, Error>) -> Void) {
-        
-        guard code != lastCode else {
-            return
-        }
-        
+    func fetchOAuthToken(
+        _ code: String,
+        completion: @escaping (Result<String, Error>) -> Void
+    ) {
+        assert(Thread.isMainThread)
+        if lastCode == code { return }
+        task?.cancel()
         lastCode = code
         
-        guard let request = authTokenRequest(code: code) else {
-            assertionFailure("Invalid request")
-            completion(.failure(NetworkError.invalidRequest))
-            return
-        }
-        
-        task = session.descTask(for: request) {
-            [weak self] (response: Result<OAuthTokenResponseBody, Error>) in
-            self?.task = nil
-            switch response {
+        guard let request = authTokenRequest(code: code) else { return }
+        let task = urlSession.descTask(for: request) { [weak self] (result:
+            Result<OAuthTokenResponseBody, Error>) in
+            guard let self = self else { return }
+            switch result {
             case .success(let body):
                 let authToken = body.accessToken
-                self?.storage.token = authToken
+                self.authToken = authToken
                 completion(.success(authToken))
+                self.task = nil
             case .failure(let error):
                 completion(.failure(error))
             }
         }
+        self.task = task
+        task.resume()
     }
 }
 
-
-extension OAuth2Service {
-    private func  authTokenRequest(code: String) -> URLRequest? {
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = "unsplash.com"
-        urlComponents.path = "/oauth/token"
-        
-        urlComponents.queryItems = [
-            URLQueryItem(name: "client_id", value: accessKey),
-            URLQueryItem(name: "client_secret", value: secretKey),
-            URLQueryItem(name: "redirect_uri", value: redirectURI),
-            URLQueryItem(name: "code", value: code),
-            URLQueryItem(name: "grant_type", value: "authorization_code")
-        ]
-        
-        guard let url = urlComponents.url else {
-            fatalError("Failed to create URL")
-        }
-        
-        var request = URLRequest(url: url)
-        
-        request.httpMethod = "POST"
-        return request
+private extension OAuth2Service {
+    func authTokenRequest(code: String) -> URLRequest? {
+        URLRequest.makeHTTPRequest(
+            path: "/oauth/token"
+            + "?client_id=\(KeyAndUrl.accessKey)"
+            + "&&client_secret=\(KeyAndUrl.secretKey)"
+            + "&&redirect_uri=\(KeyAndUrl.redirectURI)"
+            + "&&code=\(code)"
+            + "&&grant_type=authorization_code",
+            httpMethod: "POST",
+            baseURL: URL(string: "https://unsplash.com")!
+        )
     }
 }
-
-
-

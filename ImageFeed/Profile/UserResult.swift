@@ -8,9 +8,9 @@
 import UIKit
 
 struct UserResult: Codable {
-    let profileImage: ImageURL?
-}
-
-struct ImageURL: Codable {
-    let large: String
+    let profileImage: [String:String]
+    
+    enum CodingKeys: String, CodingKey {
+        case profileImage = "profile_image"
+    }
 }

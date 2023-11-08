@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		050F33162AF6638300485B7D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 050F33152AF6638300485B7D /* Kingfisher */; };
+		051D31622AFBC97E007A48F2 /* ProfileImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D31612AFBC97E007A48F2 /* ProfileImageModel.swift */; };
 		052868082AF992EE0014113C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052868072AF992EE0014113C /* TabBarController.swift */; };
 		052C6ED02AE067A90050560F /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052C6ECF2AE067A90050560F /* UIBlockingProgressHUD.swift */; };
 		052C6ED22AE06F470050560F /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052C6ED12AE06F470050560F /* ProfileService.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		051D31612AFBC97E007A48F2 /* ProfileImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageModel.swift; sourceTree = "<group>"; };
 		052868072AF992EE0014113C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		052C6ECF2AE067A90050560F /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 		052C6ED12AE06F470050560F /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			children = (
 				052C6ED32AE070300050560F /* Profile.swift */,
 				052C6ED52AE070530050560F /* ProfileResult.swift */,
+				051D31612AFBC97E007A48F2 /* ProfileImageModel.swift */,
 				052C6ED72AE070830050560F /* UserResult.swift */,
 				052C6ED12AE06F470050560F /* ProfileService.swift */,
 				052C6ED92AE07AD80050560F /* ProfileImageService.swift */,
@@ -289,6 +292,7 @@
 				05E463B62AF1ADF30046BB14 /* URLRequestExtension.swift in Sources */,
 				052C6ED62AE070530050560F /* ProfileResult.swift in Sources */,
 				052C6ED02AE067A90050560F /* UIBlockingProgressHUD.swift in Sources */,
+				051D31622AFBC97E007A48F2 /* ProfileImageModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
