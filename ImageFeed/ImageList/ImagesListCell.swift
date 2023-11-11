@@ -26,13 +26,4 @@ final class ImagesListCell: UITableViewCell {
             gradientInited.toggle()
         }
     }
-    
-    func configCell(image: UIImage, dateText: String, isLiked: Bool) {
-        cellImage.image = image
-        dateLabel.text = dateText
-        
-        let likeImage = isLiked ? UIImage(named: "like_active") : UIImage(named: "like_not_active")
-        likeButton.setImage(likeImage, for: .normal)
-    }
 }
-

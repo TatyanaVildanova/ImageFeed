@@ -200,7 +200,7 @@
         <!--Auth View Controller-->
         <scene sceneID="WS4-bt-jhc">
             <objects>
-                <viewController storyboardIdentifier="AuthViewControllerID" modalPresentationStyle="fullScreen" id="pLP-ML-PWY" userLabel="Auth View Controller" customClass="AuthViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AuthViewController" modalPresentationStyle="fullScreen" id="pLP-ML-PWY" userLabel="Auth View Controller" customClass="AuthViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="O4U-S4-rt1">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -271,10 +271,10 @@
             </objects>
             <point key="canvasLocation" x="968.70229007633588" y="-2.1126760563380285"/>
         </scene>
-        <!--Web View View Controller-->
+        <!--Web View Controller-->
         <scene sceneID="VqH-tx-hYj">
             <objects>
-                <viewController modalPresentationStyle="overFullScreen" id="ACP-B5-PGg" customClass="WebViewViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overFullScreen" id="ACP-B5-PGg" userLabel="Web View Controller" customClass="WebViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vqn-Cq-uLN">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -320,8 +320,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="81M-7T-OBP"/>
                     <connections>
-                        <outlet property="progressView" destination="4V8-7g-4BH" id="FTe-Cl-4H4"/>
-                        <outlet property="webView" destination="nx6-tf-VwI" id="GPo-Jq-ipP"/>
+                        <outlet property="progressView" destination="4V8-7g-4BH" id="YWn-5S-p8W"/>
+                        <outlet property="webView" destination="nx6-tf-VwI" id="yMO-tT-FnW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pea-1F-DI0" sceneMemberID="firstResponder"/>

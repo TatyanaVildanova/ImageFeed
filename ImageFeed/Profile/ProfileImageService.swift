@@ -13,7 +13,7 @@ final class ProfileImageService {
     static let shared = ProfileImageService()
     private (set) var avatarUrl: String?
     private var task: URLSessionTask?
-    private let urlSession = URLSession.shared
+    private let session = URLSession.shared
     static let didChangeNotification = Notification.Name(rawValue: "ProfileImageProviderDidChange")
     private let oauth2TokenStorage = OAuth2TokenStorage.shared
     private init() {}
@@ -28,7 +28,7 @@ final class ProfileImageService {
         task?.cancel()
         guard let token = oauth2TokenStorage.token else { return }
         let request = profileImageRequest(token: token, username: username)
-        let task = urlSession.descTask(for: request) { [weak self] (result: Result<UserResult, Error>) in
+        let task = session.descTask(for: request) { [weak self] (result: Result<UserResult, Error>) in
             guard let self = self else { return }
             switch result {
             case .success(let body):
@@ -39,7 +39,7 @@ final class ProfileImageService {
                     .post(
                         name: ProfileImageService.didChangeNotification,
                         object: self,
-                        userInfo: ["URL": self.avatarUrl])
+                        userInfo: ["URL": self.avatarUrl!])
                 self.task = nil
             case .failure(let error):
                 completion(.failure(error))
