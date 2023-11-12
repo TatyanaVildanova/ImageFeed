@@ -8,19 +8,17 @@
 import UIKit
 
 final class SingleImageViewController: UIViewController {
-    var image: UIImage? {
+    
+    @IBOutlet private var imageView: UIImageView!
+    @IBOutlet private weak var scrollView: UIScrollView!
+    
+    var image: UIImage! {
         didSet {
-            if isViewLoaded {
-                imageView.image = image
-                if let image = image {
-                    rescaleAndCenterImageInScrollView(image: image)
-                }
-            }
+            guard isViewLoaded else { return }
+            imageView.image = image
+            rescaleAndCenterImageInScrollView(image: image)
         }
     }
-    
-    @IBOutlet var imageView: UIImageView!
-    @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,23 +29,7 @@ final class SingleImageViewController: UIViewController {
         view.backgroundColor = UIColor(named: "YP Black")
     }
     
-    @IBAction func didTapBackButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    
-    @IBAction func didTapShareButton(_ sender: Any) {
-        let share = UIActivityViewController(
-            activityItems: [image],
-            applicationActivities: nil)
-        present(share, animated: true, completion: nil)
-    }
-    
-    private func rescaleAndCenterImageInScrollView(image: UIImage?) {
-        guard let image = image else {
-            return
-        }
-        
+    private func rescaleAndCenterImageInScrollView(image: UIImage) {
         let minZoomScale = scrollView.minimumZoomScale
         let maxZoomScale = scrollView.maximumZoomScale
         view.layoutIfNeeded()
@@ -62,6 +44,18 @@ final class SingleImageViewController: UIViewController {
         let x = (newContentSize.width - visibleRectSize.width) / 2
         let y = (newContentSize.height - visibleRectSize.height) / 2
         scrollView.setContentOffset(CGPoint(x: x, y: y), animated: false)
+    }
+    
+    @IBAction private func didTapBackButton(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func didTapShareButton(_ sender: UIButton) {
+        let share = UIActivityViewController(
+            activityItems: [image as Any],
+            applicationActivities: nil)
+        present(share, animated: true, completion: nil)
     }
 }
 
