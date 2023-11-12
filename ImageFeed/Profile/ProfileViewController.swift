@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController {
     
     private let oauth2TokenStorage = OAuth2TokenStorage()
     private let profileService = ProfileService.shared
