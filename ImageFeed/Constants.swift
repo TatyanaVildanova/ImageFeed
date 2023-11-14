@@ -15,5 +15,4 @@ struct KeyAndUrl {
     static let defaultBaseURL = URL(string: "https://api.unsplash.com")!
     static let unsplashAuthorizeUrlString = "https://unsplash.com/oauth/authorize"
     static let defaultBaseApiUrl = URL(string: "https://api.unsplash.com/")!
-    static let tokenKey = "ImageFeedOAuth2Token"
 }

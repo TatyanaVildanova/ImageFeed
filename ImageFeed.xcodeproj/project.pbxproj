@@ -24,10 +24,12 @@
 		0585EA872AF9374D001E61E0 /* URLSessionCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0585EA862AF9374D001E61E0 /* URLSessionCode.swift */; };
 		05BB5A532AA52D8100397568 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BB5A522AA52D8100397568 /* AppDelegate.swift */; };
 		05BB5A552AA52D8100397568 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BB5A542AA52D8100397568 /* SceneDelegate.swift */; };
-		05BB5A572AA52D8100397568 /* ImageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BB5A562AA52D8100397568 /* ImageListViewController.swift */; };
+		05BB5A572AA52D8100397568 /* ImagesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BB5A562AA52D8100397568 /* ImagesListViewController.swift */; };
 		05BB5A5A2AA52D8100397568 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05BB5A582AA52D8100397568 /* Main.storyboard */; };
 		05BB5A5C2AA52D8200397568 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05BB5A5B2AA52D8200397568 /* Assets.xcassets */; };
 		05BB5A5F2AA52D8200397568 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05BB5A5D2AA52D8200397568 /* LaunchScreen.storyboard */; };
+		05C07A942B041A7E00637B1A /* ImageListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C07A932B041A7E00637B1A /* ImageListModel.swift */; };
+		05C07A962B041DB900637B1A /* ImagesListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C07A952B041DB900637B1A /* ImagesListService.swift */; };
 		05CC5A032AA763FE00586799 /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CC5A022AA763FE00586799 /* ImagesListCell.swift */; };
 		05E463A02AF0247B0046BB14 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 05E4639F2AF0247B0046BB14 /* SnapKit */; };
 		05E463AC2AF0279A0046BB14 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 05E463AB2AF0279A0046BB14 /* SwiftKeychainWrapper */; };
@@ -62,11 +64,13 @@
 		05BB5A4F2AA52D8100397568 /* ImageFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05BB5A522AA52D8100397568 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05BB5A542AA52D8100397568 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		05BB5A562AA52D8100397568 /* ImageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListViewController.swift; sourceTree = "<group>"; };
+		05BB5A562AA52D8100397568 /* ImagesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListViewController.swift; sourceTree = "<group>"; };
 		05BB5A592AA52D8100397568 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		05BB5A5B2AA52D8200397568 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05BB5A5E2AA52D8200397568 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		05BB5A602AA52D8200397568 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05C07A932B041A7E00637B1A /* ImageListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListModel.swift; sourceTree = "<group>"; };
+		05C07A952B041DB900637B1A /* ImagesListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListService.swift; sourceTree = "<group>"; };
 		05CC5A022AA763FE00586799 /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
 		05E463B52AF1ADF30046BB14 /* URLRequestExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestExtension.swift; sourceTree = "<group>"; };
 		05EF23482AB5EBF600F32DE0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -142,7 +146,9 @@
 			isa = PBXGroup;
 			children = (
 				05CC5A022AA763FE00586799 /* ImagesListCell.swift */,
-				05BB5A562AA52D8100397568 /* ImageListViewController.swift */,
+				05BB5A562AA52D8100397568 /* ImagesListViewController.swift */,
+				05C07A932B041A7E00637B1A /* ImageListModel.swift */,
+				05C07A952B041DB900637B1A /* ImagesListService.swift */,
 			);
 			path = ImageList;
 			sourceTree = "<group>";
@@ -284,7 +290,7 @@
 				05EF23492AB5EBF600F32DE0 /* ProfileViewController.swift in Sources */,
 				051D316A2AFC057F007A48F2 /* WebViewControllerDelegate.swift in Sources */,
 				05EF234C2AB7016A00F32DE0 /* SingleImageViewController.swift in Sources */,
-				05BB5A572AA52D8100397568 /* ImageListViewController.swift in Sources */,
+				05BB5A572AA52D8100397568 /* ImagesListViewController.swift in Sources */,
 				05EF235E2ACB6CBB00F32DE0 /* SplashViewController.swift in Sources */,
 				052C6ED82AE070830050560F /* UserResult.swift in Sources */,
 				05CC5A032AA763FE00586799 /* ImagesListCell.swift in Sources */,
@@ -299,12 +305,14 @@
 				0585EA872AF9374D001E61E0 /* URLSessionCode.swift in Sources */,
 				051D31682AFC04ED007A48F2 /* AlertModel.swift in Sources */,
 				052868082AF992EE0014113C /* TabBarController.swift in Sources */,
+				05C07A942B041A7E00637B1A /* ImageListModel.swift in Sources */,
 				05EF23542ACADB7500F32DE0 /* WebViewController.swift in Sources */,
 				05EF23592ACB6C3100F32DE0 /* OAuth2Service.swift in Sources */,
 				052C6ED42AE070300050560F /* Profile.swift in Sources */,
 				05BB5A552AA52D8100397568 /* SceneDelegate.swift in Sources */,
 				05E463B62AF1ADF30046BB14 /* URLRequestExtension.swift in Sources */,
 				052C6ED62AE070530050560F /* ProfileResult.swift in Sources */,
+				05C07A962B041DB900637B1A /* ImagesListService.swift in Sources */,
 				052C6ED02AE067A90050560F /* UIBlockingProgressHUD.swift in Sources */,
 				051D31622AFBC97E007A48F2 /* ProfileImageModel.swift in Sources */,
 				051D31642AFC046F007A48F2 /* AlertPresenter.swift in Sources */,
@@ -461,6 +469,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -493,6 +502,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
