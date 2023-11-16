@@ -9,11 +9,11 @@ import UIKit
 import WebKit
 
 final class WebViewController: UIViewController {
-   
+    
     @IBOutlet private var progressView: UIProgressView!
     
     @IBOutlet private var webView: WKWebView!
-
+    
     
     //MARK: - Properties
     weak var delegate: WebViewControllerDelegate?
@@ -131,5 +131,14 @@ extension WebViewController {
             })
         alertPresenter = AlertPresenter(delegate: self)
         alertPresenter?.showError(for: alert)
+    }
+    
+    static func clean() {
+        HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
+        WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+            records.forEach { record in
+                WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+            }
+        }
     }
 }

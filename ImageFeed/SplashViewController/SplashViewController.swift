@@ -135,10 +135,14 @@ extension SplashViewController {
             message: "Не удалось войти в систему",
             buttonText: "ОК",
             completion: { [weak self] in
-                guard self != nil else {
+                guard let self = self else {
                     return
                 }
+                oauth2TokenStorage.token = nil
+                WebViewController.clean()
+                profileService.clean()
             })
+        switchToAuthViewController()
         alertPresenter?.showError(for: alert)
     }
 }

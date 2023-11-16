@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Foundation
 
 struct UserResult: Codable {
     let profileImage: [String:String]
