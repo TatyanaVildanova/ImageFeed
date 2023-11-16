@@ -16,12 +16,12 @@ final class ImagesListCell: UITableViewCell {
     weak var delegate: ImagesListCellDelegate?
     private var gradientInited = false
     
-    @IBOutlet var gradientView: UIImageView!
-    @IBOutlet var dateLabel: UILabel!
-    @IBOutlet var cellImage: UIImageView!
-    @IBOutlet var likeButton: UIButton!
+    @IBOutlet weak var gradientView: UIImageView!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var cellImage: UIImageView!
+    @IBOutlet weak var likeButton: UIButton!
     
-    @IBAction func likeButtonClicked(_ sender: UIButton) {
+    @IBAction private func likeButtonClicked(_ sender: UIButton) {
         delegate?.imageListCellDidTapLike(self)
     }
    
