@@ -9,12 +9,23 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-class ProfileViewController: UIViewController {
+protocol ProfileViewControllerProtocol: AnyObject {
+    var presenter: ProfileViewPresenterProtocol { get set }
+    var nameLabel: UILabel { get set }
+    var loginNameLabel: UILabel { get set }
+    var descriptionLabel: UILabel { get set }
+    func loadAvatar()
+    func showAlertExit()
+}
+
+final class ProfileViewController: UIViewController & ProfileViewControllerProtocol {
+    var presenter: ProfileViewPresenterProtocol = {
+        return ProfileViewPresenter()
+    }()
     
-    private let oauth2TokenStorage = OAuth2TokenStorage()
+    
     private let profileService = ProfileService.shared
     private let profileImageService = ProfileImageService.shared
-    private var profileImageServiceObserver: NSObjectProtocol?
     private var alertPresenter: AlertPresenterProtocol?
     
     private var avatarImageView: UIImageView = {
@@ -26,7 +37,7 @@ class ProfileViewController: UIViewController {
         return viewImageAvatar
     }()
     
-    private var nameLabel: UILabel = {
+    var nameLabel: UILabel = {
         let labelName = UILabel()
         labelName.text = "Екатерина Новикова"
         labelName.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
@@ -35,7 +46,7 @@ class ProfileViewController: UIViewController {
         return labelName
     }()
     
-    private var loginNameLabel: UILabel = {
+    var loginNameLabel: UILabel = {
         let labelNameLogin = UILabel()
         labelNameLogin.text = "@ekaterina_nov"
         labelNameLogin.textColor = UIColor(red: 0.682, green: 0.686, blue: 0.706, alpha: 1)
@@ -44,7 +55,7 @@ class ProfileViewController: UIViewController {
         return labelNameLogin
     }()
     
-    private var descriptionLabel: UILabel = {
+    var descriptionLabel: UILabel = {
         let labelDescription = UILabel ()
         labelDescription.text = "Hello, World!"
         labelDescription.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
@@ -85,24 +96,16 @@ class ProfileViewController: UIViewController {
         view.addSubview(logoutButton)
         logoutButtonSetup()
         
+        presenter.view = self
+        presenter.viewDidLoad()
         updateProfileDetails(profile: profileService.profile)
     }
     
-    private func updateProfileDetails(profile: Profile?) {
+    func updateProfileDetails(profile: Profile?) {
         guard let profile = profile else { return }
-        nameLabel.text = profile.name
-        loginNameLabel.text = profile.loginName
-        descriptionLabel.text = profile.bio
-        
-        profileImageServiceObserver = NotificationCenter.default.addObserver(
-            forName: ProfileImageService.didChangeNotification,
-            object: nil,
-            queue: .main
-        ) { [weak self] _ in
-            guard let self = self else { return }
-            self.loadAvatar()
-        }
-        loadAvatar()
+        self.nameLabel.text = profile.name
+        self.loginNameLabel.text = profile.loginName
+        self.descriptionLabel.text = profile.bio
     }
     
     func avatarImageViewSetup() {
@@ -143,7 +146,7 @@ class ProfileViewController: UIViewController {
 }
 
 private extension ProfileViewController {
-    func loadAvatar() {
+    internal func loadAvatar() {
         guard
             let avatarURL = profileImageService.avatarUrl,
             let profleURL = URL(string: avatarURL) else { return }
@@ -163,16 +166,7 @@ private extension ProfileViewController {
         avatarImageView.layer.cornerRadius = 34
     }
     
-    func exitProfile() {
-        OAuth2TokenStorage().token = nil
-        WebViewController.clean()
-        profileService.clean()
-        guard let window = UIApplication.shared.windows.first else {
-            fatalError("Invalid Configuration") }
-        window.rootViewController = SplashViewController()
-    }
-    
-    func showAlertExit() {
+    internal func showAlertExit() {
         DispatchQueue.main.async {
             let alert = AlertModel(
                 title: "Пока, пока!",
@@ -180,7 +174,7 @@ private extension ProfileViewController {
                 buttonText: "Да",
                 completion: { [weak self] in
                     guard let self = self else { return }
-                    self.exitProfile()
+                    presenter.exitProfile()
                 },
                 nextButtonText: "Нет",
                 nextCompletion: { [weak self] in

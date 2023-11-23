@@ -19,6 +19,7 @@ final class SplashViewController: UIViewController {
     private let authViewControllerID = "AuthViewController"
     private let tabBarViewControllerID = "TabBarViewController"
     private let mainID = "Main"
+    var presenter: ProfileViewPresenterProtocol?
     private let spleshScreenLogoImageView: UIImageView = {
         let viewImageLogoScreenSplesh = UIImageView()
         viewImageLogoScreenSplesh.image = UIImage(named: "splash_screen_logo")
@@ -61,7 +62,10 @@ final class SplashViewController: UIViewController {
 extension SplashViewController: AuthViewControllerDelegate {
     private func switchToAuthViewController() {
         let storyboard = UIStoryboard(name: mainID, bundle: .main).instantiateViewController(identifier: authViewControllerID)
-        guard let authViewController = storyboard as? AuthViewController else { return }
+        guard let authViewController = storyboard as? AuthViewController else {
+            assertionFailure("Failed to show Authentication Screen")
+            return
+        }
         authViewController.delegate = self
         authViewController.modalPresentationStyle = .fullScreen
         present(authViewController, animated: true)
@@ -72,6 +76,7 @@ extension SplashViewController: AuthViewControllerDelegate {
 
 extension SplashViewController {
     func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
+        UIBlockingProgressHUD.show()
         dismiss(animated: true) { [weak self] in
             guard let self = self else { return }
             UIBlockingProgressHUD.show()
@@ -80,7 +85,8 @@ extension SplashViewController {
     }
     
     private func showToTabBarController() {
-        guard let window = UIApplication.shared.windows.first else { fatalError("Invalid Configuration") }
+        guard let window = UIApplication.shared.windows.first else { assertionFailure("Invalid Configuration")
+            return }
         let tabBarController = UIStoryboard(name: mainID, bundle: .main)
             .instantiateViewController(withIdentifier: tabBarViewControllerID)
         window.rootViewController = tabBarController
@@ -139,7 +145,7 @@ extension SplashViewController {
                     return
                 }
                 oauth2TokenStorage.token = nil
-                WebViewController.clean()
+                profileService.cleanCookies()
                 profileService.clean()
             })
         switchToAuthViewController()
