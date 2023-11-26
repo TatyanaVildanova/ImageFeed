@@ -53,7 +53,7 @@ final class ProfileTests: XCTestCase {
         profilePresenter.view = profileViewController
         
         let test = "test"
-        let userName = "chrnivan"
+        let userName = "chrniv"
         let nameLabel = "Ivan Cherkashin"
         let firstName = "Ivan"
         let lastName = "Cherkashin"

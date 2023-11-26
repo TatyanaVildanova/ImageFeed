@@ -17,12 +17,12 @@ final class ImageFeedUITest: XCTestCase {
     
     override func setUpWithError() throws {
         continueAfterFailure = false
-        
+
         app.launchArguments = ["testMode"]
         app.launch()
         
     }
-    
+
     func testAuth() throws {
         app.buttons["Authenticate"].tap()
         
@@ -52,31 +52,31 @@ final class ImageFeedUITest: XCTestCase {
         
         XCTAssertTrue(cell.waitForExistence(timeout: 5))
     }
-    
+
     func testFeed() throws {
         let tablesQuery = app.tables
-        
+
         let cell = tablesQuery.children(matching: .cell).element(boundBy: 0)
         cell.swipeUp()
-        
+
         sleep(3)
-        
+
         let cellToLike = tablesQuery.descendants(matching: .cell).element(boundBy: 1)
-        
+
         let likeButton = cellToLike.descendants(matching: .button).element(boundBy: 0)
-        
+
         likeButton.tap()
-        
+
         sleep(2)
-        
+
         likeButton.tap()
-        
+
         sleep(2)
-        
+
         cellToLike.tap()
-        
+
         sleep(3)
-        
+
         let image = app.scrollViews.images.element(boundBy: 0)
         image.pinch(withScale: 3, velocity: 1)
         image.pinch(withScale: 0.5, velocity: -1)
