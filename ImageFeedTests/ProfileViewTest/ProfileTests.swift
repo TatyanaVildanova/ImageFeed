@@ -53,11 +53,11 @@ final class ProfileTests: XCTestCase {
         profilePresenter.view = profileViewController
         
         let test = "test"
-        let userName = "chrniv"
-        let nameLabel = "Ivan Cherkashin"
-        let firstName = "Ivan"
-        let lastName = "Cherkashin"
-        let loginNameLabel = "@chrnivan"
+        let userName = "tatavild"
+        let nameLabel = "Tatyana Vildanova"
+        let firstName = "Tatyana"
+        let lastName = "Vildanova"
+        let loginNameLabel = "@tatavild"
         let profile = Profile(callData: ProfileResult(userName: userName,
                                                       firstName: firstName,
                                                       lastName: lastName,
