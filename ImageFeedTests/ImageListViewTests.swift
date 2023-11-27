@@ -11,7 +11,7 @@ import UIKit
 import Foundation
 
 final class ImagesListTests: XCTestCase {
-        //given
+    //given
     func testViewControllerCallsViewDidLoad(){
         
         let imageListService = ImagesListService.shared
@@ -67,7 +67,6 @@ final class ImagesListPresenterSpy: ImagesListViewPresenterProtocol {
     }
     
 }
-    
 
 final class ImageListViewControllerSpy: ImagesListViewControllerProtocol {
     var presenter: ImageFeed.ImagesListViewPresenterProtocol?

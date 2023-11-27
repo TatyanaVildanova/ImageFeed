@@ -37,7 +37,7 @@ final class WebViewController: UIViewController & WebViewControllerProtocol {
         alertPresenter = AlertPresenter(delegate: self)
         webView.accessibilityIdentifier = "UnsplashWebView"
     }
-        
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -46,9 +46,8 @@ final class WebViewController: UIViewController & WebViewControllerProtocol {
             forKeyPath: #keyPath(WKWebView.estimatedProgress),
             options: .new,
             context: nil)
-       
+        
     }
-    
     
     func load(request: URLRequest) {
         webView.load(request)
@@ -113,9 +112,9 @@ extension WebViewController: WKNavigationDelegate {
     
     private func code(from navigationAction: WKNavigationAction) -> String? {
         if let url = navigationAction.request.url {
-                return presenter?.code(from: url)
-            }
-            return nil
+            return presenter?.code(from: url)
+        }
+        return nil
     }
 }
 //MARK: - AlertPresenter

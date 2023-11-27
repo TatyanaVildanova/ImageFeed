@@ -26,19 +26,20 @@ final class ImageListViewPresenter: ImagesListViewPresenterProtocol {
     }
     
     func addPhotoLike(photoId: String, isLike: Bool, _ completion: @escaping (Result<Void, Error>) -> Void) {
-            imagesListService.changeLike(photoId: photoId,
-                                         isLike: isLike,
-                                         { [weak self] result in
-                guard let self = self else { return }
-                switch result{
-                case .success(_):
-                    completion(.success(()))
-                case .failure(let error):
-                    completion(.failure(error))
-                    print("Ошибка, возникшая при изменении типа: \(error)")
-                }
-            })
-        }
+        imagesListService.changeLike(photoId: photoId,
+                                     isLike: isLike,
+                                     { [weak self] result in
+            guard let self = self else { return }
+            switch result{
+            case .success(_):
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(error))
+                print("Ошибка, возникшая при изменении типа: \(error)")
+            }
+        })
+    }
+    
     func configureNotificationObserver() {
         imagesListServiceObserver = NotificationCenter.default.addObserver(
             forName: ImagesListService.didChangeNotification,
@@ -53,5 +54,4 @@ final class ImageListViewPresenter: ImagesListViewPresenterProtocol {
     func fetchPhotosNextPage(){
         imagesListService.fetchPhotosNextPage()
     }
-    
 }
