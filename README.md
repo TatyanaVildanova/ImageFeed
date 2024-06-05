@@ -149,7 +149,7 @@
 
 # Экран Профиля 
 
-<img width="514" alt="Снимок экрана 2024-05-15 в 14 28 00" src="https://github.com/ospanovadinara/ImageFeed/assets/136311088/731d26ff-e305-440f-b256-94ed21ab7f50">
+
 
 
 
